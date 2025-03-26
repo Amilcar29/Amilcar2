@@ -1,0 +1,146 @@
+-- Creación de la base de datos
+CREATE DATABASE IF NOT EXISTS sistema_proyectos;
+USE sistema_proyectos;
+
+-- Tabla de roles
+CREATE TABLE roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion TEXT,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabla de usuarios
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    rol_id INT NOT NULL,
+    area_id INT,
+    departamento_id INT,
+    activo BOOLEAN DEFAULT true,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ultima_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (rol_id) REFERENCES roles(id)
+);
+
+-- Tabla de áreas
+CREATE TABLE areas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    gerente_id INT,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (gerente_id) REFERENCES usuarios(id) ON DELETE SET NULL
+);
+
+-- Tabla de departamentos
+CREATE TABLE departamentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    area_id INT NOT NULL,
+    jefe_id INT,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (area_id) REFERENCES areas(id) ON DELETE CASCADE,
+    FOREIGN KEY (jefe_id) REFERENCES usuarios(id) ON DELETE SET NULL
+);
+
+-- Agregar restricciones después de crear las tablas
+ALTER TABLE usuarios
+ADD FOREIGN KEY (area_id) REFERENCES areas(id) ON DELETE SET NULL,
+ADD FOREIGN KEY (departamento_id) REFERENCES departamentos(id) ON DELETE SET NULL;
+
+-- Tabla de proyectos
+CREATE TABLE proyectos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(200) NOT NULL,
+    descripcion TEXT,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NOT NULL,
+    area_id INT,
+    creado_por INT NOT NULL,
+    estado ENUM('Pendiente', 'En Progreso', 'Completado', 'Cancelado') DEFAULT 'Pendiente',
+    prioridad ENUM('Baja', 'Media', 'Alta', 'Urgente') DEFAULT 'Media',
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ultima_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (area_id) REFERENCES areas(id) ON DELETE SET NULL,
+    FOREIGN KEY (creado_por) REFERENCES usuarios(id)
+);
+
+-- Tabla de tareas
+CREATE TABLE tareas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(200) NOT NULL,
+    descripcion TEXT,
+    proyecto_id INT,
+    asignado_a INT,
+    creado_por INT NOT NULL,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NOT NULL,
+    estado ENUM('Pendiente', 'En Progreso', 'Completado', 'Cancelado') DEFAULT 'Pendiente',
+    prioridad ENUM('Baja', 'Media', 'Alta', 'Urgente') DEFAULT 'Media',
+    porcentaje_completado INT DEFAULT 0,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ultima_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (proyecto_id) REFERENCES proyectos(id) ON DELETE CASCADE,
+    FOREIGN KEY (asignado_a) REFERENCES usuarios(id) ON DELETE SET NULL,
+    FOREIGN KEY (creado_por) REFERENCES usuarios(id)
+);
+
+-- Tabla de usuarios asignados a proyectos
+CREATE TABLE usuarios_proyectos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    proyecto_id INT NOT NULL,
+    fecha_asignacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (proyecto_id) REFERENCES proyectos(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_usuario_proyecto (usuario_id, proyecto_id)
+);
+
+-- Tabla de comentarios en tareas
+CREATE TABLE comentarios_tareas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tarea_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+    comentario TEXT NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tarea_id) REFERENCES tareas(id) ON DELETE CASCADE,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+-- Tabla de historial de cambios en tareas
+CREATE TABLE historial_tareas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tarea_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+    campo_modificado VARCHAR(50) NOT NULL,
+    valor_anterior TEXT,
+    valor_nuevo TEXT,
+    fecha_modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tarea_id) REFERENCES tareas(id) ON DELETE CASCADE,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+-- Tabla de notificaciones
+CREATE TABLE notificaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    mensaje TEXT NOT NULL,
+    leida BOOLEAN DEFAULT false,
+    tipo VARCHAR(50),
+    referencia_id INT,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
+-- Datos iniciales: Roles
+INSERT INTO roles (nombre, descripcion) VALUES 
+('Administrador', 'Administrador del sistema con acceso total'),
+('Gerente General', 'Acceso total a proyectos y tareas de toda la organización'),
+('Gerente de Área', 'Gestión de proyectos y tareas de su área asignada'),
+('Jefe de Departamento', 'Gestión de proyectos y tareas de su departamento'),
+('Colaborador', 'Acceso limitado a sus tareas asignadas');
