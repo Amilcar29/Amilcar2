@@ -1,0 +1,521 @@
+/* Estilos generales para el sistema */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+}
+
+/* Estructura principal */
+.wrapper {
+    overflow-x: hidden;
+}
+
+.content-wrapper {
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 57px);
+}
+
+/* Estilos para cabeceras */
+.content-header {
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.content-header h1 {
+    font-size: 1.6rem;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+/* Personalización para tarjetas */
+.card {
+    margin-bottom: 25px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    padding: 0.75rem 1.25rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+/* Tarjetas de estadísticas (small-box) */
+.small-box {
+    margin-bottom: 20px;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+.small-box > .inner {
+    padding: 20px;
+}
+
+.small-box h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    padding: 0;
+}
+
+.small-box p {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.small-box .icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 0;
+    font-size: 70px;
+    color: rgba(255, 255, 255, 0.15);
+}
+
+.small-box .small-box-footer {
+    position: relative;
+    text-align: center;
+    padding: 10px 0;
+    color: #fff;
+    display: block;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.small-box .small-box-footer:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Personalización para tablas */
+.table-responsive {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.table {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.table td, .table th {
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+.table th {
+    border-top: none;
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.075);
+}
+
+/* Personalización de botones */
+.btn {
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    font-weight: 500;
+}
+
+.btn-xs {
+    padding: 0.25rem 0.4rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+/* Personalización del sidebar */
+.main-sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.sidebar {
+    padding: 0;
+    overflow-y: auto;
+}
+
+.sidebar .nav-link {
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+.sidebar .nav-link:hover {
+    color: #fff;
+}
+
+.sidebar .nav-link.active {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .nav-treeview .nav-link {
+    padding-left: 35px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.sidebar .nav-treeview .nav-link:hover {
+    color: #fff;
+}
+
+.sidebar .nav-treeview .nav-link.active {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .user-panel {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .user-panel .info {
+    padding-left: 10px;
+}
+
+.sidebar .user-panel .info a {
+    color: #fff;
+    font-weight: 600;
+}
+
+.brand-link {
+    padding: 15px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand-image {
+    margin-right: 10px;
+}
+
+/* Estilos para el navbar superior */
+.main-header {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: none;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem 1rem;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+/* Estilos para formularios */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-control {
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.form-control-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Badges y etiquetas */
+.badge {
+    padding: 0.35rem 0.65rem;
+    font-weight: 500;
+    border-radius: 0.25rem;
+}
+
+/* Notificaciones */
+.dropdown-menu-lg {
+    min-width: 300px;
+}
+
+.dropdown-menu-lg .dropdown-item {
+    padding: 0.75rem 1rem;
+}
+
+/* Estilos para mensajes de alerta */
+.alert {
+    border-radius: 0.25rem;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1.5rem;
+    border: none;
+}
+
+.alert-dismissible .close {
+    padding: 0.75rem 1.25rem;
+}
+
+/* Personalización para pagination */
+.pagination {
+    margin-bottom: 0;
+}
+
+.pagination .page-item .page-link {
+    padding: 0.5rem 0.75rem;
+    color: #007bff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+/* Estilos para gráficos */
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 250px;
+}
+
+/* Estilos para timeline */
+.timeline {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #ddd;
+    left: 31px;
+    margin: 0;
+}
+
+.timeline > li {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.timeline > li:last-child {
+    margin-bottom: 0;
+}
+
+/* Ajustes para el footer */
+.main-footer {
+    padding: 15px 20px;
+    color: #6c757d;
+    border-top: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+/* Ajustes para imágenes */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mejora de contraste */
+.text-muted {
+    color: #6c757d !important;
+}
+
+/* Media Queries para responsividad */
+
+/* Dispositivos extra pequeños (teléfonos, menos de 576px) */
+@media (max-width: 575.98px) {
+    .content-wrapper {
+        padding: 10px;
+    }
+    
+    .card-body {
+        padding: 10px;
+    }
+    
+    .small-box h3 {
+        font-size: 1.5rem;
+    }
+    
+    .small-box > .inner {
+        padding: 15px;
+    }
+    
+    .navbar-nav .dropdown-menu {
+        position: absolute;
+    }
+    
+    .content-header h1 {
+        font-size: 1.4rem;
+    }
+    
+    .table td, .table th {
+        padding: 8px;
+    }
+    
+    .card-title {
+        font-size: 1rem;
+    }
+    
+    .small-box .icon {
+        font-size: 50px;
+    }
+    
+    .sidebar .nav-link {
+        padding: 10px 15px;
+    }
+    
+    .sidebar .nav-treeview .nav-link {
+        padding-left: 25px;
+    }
+    
+    .main-footer {
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .main-footer .float-right {
+        float: none !important;
+        display: block;
+        margin-top: 5px;
+    }
+}
+
+/* Dispositivos pequeños (tablets verticales, 576px y más) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .content-wrapper {
+        padding: 15px;
+    }
+    
+    .small-box h3 {
+        font-size: 1.8rem;
+    }
+    
+    .content-header h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Dispositivos medianos (tablets horizontales, 768px y más) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .small-box h3 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Dispositivos grandes (desktops, 992px y más) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .content-wrapper {
+        padding: 20px;
+    }
+}
+
+/* Dispositivos extra grandes (desktops grandes, 1200px y más) */
+@media (min-width: 1200px) {
+    .content-wrapper {
+        padding: 30px;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+}
+
+/* Responsividad del sidebar */
+@media (max-width: 992px) {
+    .sidebar-mini.sidebar-collapse .main-sidebar {
+        width: 4.6rem !important;
+    }
+    
+    .sidebar-mini.sidebar-collapse .content-wrapper {
+        margin-left: 4.6rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-sidebar, .main-sidebar::before {
+        margin-left: -250px;
+        width: 250px;
+        transition: margin-left 0.3s ease-in-out;
+    }
+    
+    .sidebar-open .main-sidebar,
+    .sidebar-open .main-sidebar::before {
+        margin-left: 0;
+    }
+    
+    .content-wrapper {
+        margin-left: 0 !important;
+    }
+    
+    .sidebar .user-panel .info span {
+        display: inline-block;
+    }
+    
+    .brand-link .brand-text {
+        display: inline-block;
+    }
+    
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form-control {
+        font-size: 0.95rem;
+    }
+}
